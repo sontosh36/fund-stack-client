@@ -5,6 +5,10 @@
 }
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+
 body{
   font-family: "Urbanist", sans-serif;
+}
+a.active{
+  @apply text-blue-500;
 }

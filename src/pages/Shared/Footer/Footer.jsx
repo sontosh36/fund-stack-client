@@ -3,7 +3,7 @@ import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import footerLogo from "../../../assets/bank logo.png"
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center p-10">
+    <footer className="footer footer-horizontal footer-center p-5 md:p-18">
       <aside>
         <img className="" src={footerLogo} alt="" />
         <h3 className="text-xl md:text-2xl lg:text-4xl font-bold">
