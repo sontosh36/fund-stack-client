@@ -81,7 +81,7 @@ const Footer = () => {
               </Link>
               <Link
                 className="w-10 h-10 rounded-full flex justify-center items-center bg-white border border-blue-200 text-gray-800"
-                to="#"
+                to="https://github.com/sontosh36"
                 aria-label="github"
               >
                 <FaGithub />

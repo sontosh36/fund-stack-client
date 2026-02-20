@@ -81,7 +81,7 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <Link to={'/'} className="btn text-xl p-0 md:p-5">
+        <Link to={'/'} className=" text-xl p-0 md:p-5">
           <Logo></Logo>
         </Link>
       </div>
@@ -99,14 +99,14 @@ const NavBar = () => {
               <div className="">
                 <img src={users?.photoURL} className="h-10 w-10 rounded-full" alt={users?.displayName} />
               </div>
-              <button className="bg-blue-500 text-center px-3 py-2 rounded-lg">Log Out</button>
+              <button className="bg-indigo-600 text-center px-3 py-2 rounded-lg">Log Out</button>
             </div>
           ) : (
             <div className="flex gap-2 items-center">
               <Link to={'/login'}>
-              <button className="bg-blue-500 text-center rounded-lg px-3 py-2 font-medium hover:bg-blue-600 duration-300">Login</button></Link>
+              <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">Login</button></Link>
               <Link to={'/register'}>
-              <button className="bg-blue-500 text-center rounded-lg px-3 py-2 font-medium hover:bg-blue-600 duration-300">Register</button></Link>
+              <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">Register</button></Link>
             </div>
           )
         }
