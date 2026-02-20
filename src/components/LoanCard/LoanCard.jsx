@@ -11,19 +11,26 @@ const LoanCard = ({ loan }) => {
     interestRate,
     maxLoanLimit,
   } = loan;
+
+  const truncateText = (text, wordLimit) => {
+    const words = text.split(" ");
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(" ") + "...";
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 80 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 , ease: easeInOut}}
+      transition={{ duration: 0.2, ease: easeInOut }}
       className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
     >
       {/* Image */}
-      <motion.div 
-      initial={{opacity: 0, y: 80}}
-      animate={{opacity: 1, y: 0}}
-      transition={{ ease: easeInOut, delay: 0.3 }}
-      className="relative overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ease: easeInOut, delay: 0.3 }}
+        className="relative overflow-hidden"
+      >
         <img
           src={image}
           alt={title}
@@ -35,15 +42,16 @@ const LoanCard = ({ loan }) => {
       </motion.div>
 
       {/* Content */}
-      <motion.div 
-      initial={{opacity: 0, y: 80}}
-      animate={{opacity: 1, y: 0}}
-      transition={{ ease: easeInOut, delay: 0.4 }}
-      className="p-4 space-y-3">
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ease: easeInOut, delay: 0.4 }}
+        className="p-4 space-y-3"
+      >
         <h2 className="text-xl font-semibold text-gray-800 text-center">
           {title}
         </h2>
-        <p className="text-gray-500 text-sm">{description}</p>
+        <p className="text-gray-500 text-sm">{truncateText(description, 12)}</p>
 
         {/* Loan Info */}
         <div className="flex justify-between items-center text-sm">
@@ -61,7 +69,7 @@ const LoanCard = ({ loan }) => {
         {/* Button */}
         <Link
           to={`/loan/${_id}`}
-          className="block mt-4 text-center bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg transition duration-300 font-medium"
+          className="block text-center bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg transition duration-300 font-medium mt-auto"
         >
           View Details
         </Link>
