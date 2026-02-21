@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home/Home";
 import NotFound from "../pages/NotFound";
 import RootLayout from './../layouts/RootLayout';
 import AllLoans from "../pages/Shared/AllLoan/AllLoans";
+import LoanDetails from "../components/LoanDetails/LoanDetails";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
             {
                 path: '/all-loans',
                 Component: AllLoans,
+            },
+            {
+                path: '/loan/:id',
+                Component: LoanDetails,
             }
         ]
     }

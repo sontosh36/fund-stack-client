@@ -54,7 +54,8 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="w-full backdrop-blur-xl navbar bg-base-100 shadow-sm sticky top-0 z-30">
+    <div className="bg-base-100 sticky top-0 z-30 ">
+      <div className="navbar shadow-sm  ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -111,6 +112,7 @@ const NavBar = () => {
           )
         }
       </div>
+    </div>
     </div>
   );
 };

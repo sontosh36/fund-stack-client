@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-br from-indigo-200 via-white to-blue-200 py-20">
+    <section className="bg-gradient-to-br from-indigo-200 via-white to-blue-200 py-20 rounded-lg">
       <div className="max-w-7xl mx-auto px-6 lg-px-12 grid lg:grid-cols-2 gap-12 items-center">
         {/* left content */}
         <motion.div

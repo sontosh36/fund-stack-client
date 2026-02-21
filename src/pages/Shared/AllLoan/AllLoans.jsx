@@ -27,7 +27,7 @@ const AllLoans = () => {
             initial={{ opacity: 0, y: -80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-sm text-gray-600 px-3 md:px-13"
+            className="text-sm text-gray-400 px-3 md:px-13"
           >
             Explore our complete range of personal, business and home loan
             solutions design to meet your financial goals.
@@ -55,7 +55,7 @@ const AllLoans = () => {
           </label>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="bg-base-400 rounded-lg p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {loans.map((loan) => <LoanCard key={loan._id} loan={loan}></LoanCard>)}
         </div>
       </div>

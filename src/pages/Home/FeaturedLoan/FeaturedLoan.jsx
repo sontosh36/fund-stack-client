@@ -25,10 +25,10 @@ const FeaturedLoan = () => {
   return (
     <div className="bg-base-200 py-16 px-4 lg:px-8">
       <div className="text-center mb-8">
-        <h1 className="text-gray-600 text-4xl font-bold mb-4">
+        <h1 className="text-4xl font-bold mb-4">
           Available Loans
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-gray-400">
           Explore our most popular loan options designed for you
         </p>
       </div>

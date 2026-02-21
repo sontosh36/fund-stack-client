@@ -13,7 +13,7 @@ const Footer = () => {
             <Link to="/" className="">
               <Logo/>
             </Link>
-            <p className="text-gray-500 leading-relaxed mt-2">
+            <p className="text-gray-400 leading-relaxed mt-2">
               Fund Stack is a web-based platform for managing microloan applications, approvals, EMI schedules, repayments, borrower records through a secure, centerlized and user-friendly dashboard.
             </p>
           </div>
@@ -22,14 +22,14 @@ const Footer = () => {
             <h3 className="font-semibold mb-2 text-xl">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-500 hover:underline">
+                <Link to="/" className="text-gray-400 hover:underline">
                   Home
                 </Link>
               </li>
               <li>
                 <Link
                   to="/all-loans"
-                  className="text-gray-500 hover:underline"
+                  className="text-gray-400 hover:underline"
                 >
                   All Loans
                 </Link>
@@ -37,7 +37,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-500 hover:underline"
+                  className="text-gray-400 hover:underline"
                 >
                   About Us
                 </Link>
@@ -45,7 +45,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-500 hover:underline"
+                  className="text-gray-400 hover:underline"
                 >
                   Contact
                 </Link>
@@ -56,15 +56,15 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-2 text-xl">Contact Us</h3>
             <ul className="space-y-3 mb-2">
-              <li className="flex items-start space-x-3 text-gray-500">
+              <li className="flex items-start space-x-3 text-gray-400">
                 <FiMapPin size={25} />
                 <span>Motijheel Commercial Area, Dhaka-1000, Bangladesh</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-500">
+              <li className="flex items-center space-x-3 text-gray-400">
                 <FaPhone size={18} />
                 <span>+8801459621402</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-500">
+              <li className="flex items-center space-x-3 text-gray-400">
                 <CiMail size={18} />
                 <span>support.admin@fundstack.com</span>
               </li>
