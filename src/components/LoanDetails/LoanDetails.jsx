@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSkeleton from "../Loading/LoadingSkeleton";
 
@@ -13,7 +13,6 @@ const LoanDetails = () => {
     axiosSecure.get(`/loan/${id}`).then((res) => {
       setLoan(res.data);
       setLoading(false);
-      console.log(res.data);
     });
   }, [id, axiosSecure]);
 
@@ -48,7 +47,9 @@ const LoanDetails = () => {
           {/* Details Section */}
           <div className="flex flex-col justify-between">
             <div>
-              <h2 className="text-3xl text-center md:text-left  font-bold mb-4">{title}</h2>
+              <h2 className="text-3xl text-center md:text-left  font-bold mb-4">
+                {title}
+              </h2>
 
               <p className=" text-center md:text-left mb-6 leading-relaxed">
                 {description}
@@ -57,21 +58,13 @@ const LoanDetails = () => {
               {/* Loan Info */}
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between border-b pb-2">
-                  <span className="font-medium">
-                    Max Loan Amount
-                  </span>
-                  <span className="font-semibold">
-                    ${maxLoanLimit}
-                  </span>
+                  <span className="font-medium">Max Loan Amount</span>
+                  <span className="font-semibold">${maxLoanLimit}</span>
                 </div>
 
                 <div className="flex justify-between border-b pb-2">
-                  <span className="font-medium">
-                    Interest Rate
-                  </span>
-                  <span className="font-semibold">
-                    {interestRate}%
-                  </span>
+                  <span className="font-medium">Interest Rate</span>
+                  <span className="font-semibold">{interestRate}%</span>
                 </div>
               </div>
 
@@ -105,9 +98,11 @@ const LoanDetails = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-semibold py-3 rounded-lg shadow-md">
-              Apply for Loan
-            </button>
+            <Link to={"/apply-loan"}>
+              <button className="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-semibold py-3 rounded-lg shadow-md cursor-pointer">
+                Apply for Loan
+              </button>
+            </Link>
           </div>
         </div>
       </div>
