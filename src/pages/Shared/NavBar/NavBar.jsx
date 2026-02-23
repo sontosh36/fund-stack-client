@@ -1,17 +1,16 @@
 import React from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import useAuth from "./../../../hooks/useAuth";
 import Logo from "./../../../components/logo/Logo";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
-  const { users } = useAuth();
+  const { users, logOut } = useAuth();
+  const navigate = useNavigate();
   const links = (
     <>
       <li>
-        <NavLink
-          to="/"
-         className="hover:text-blue-500 font-semibold text-md"
-        >
+        <NavLink to="/" className="hover:text-blue-500 font-semibold text-md">
           Home
         </NavLink>
       </li>
@@ -53,66 +52,84 @@ const NavBar = () => {
       </li>
     </>
   );
+  const logOutUser = () => {
+    logOut().then(() => {
+      toast.success("logOut Successfully");
+      navigate("/");
+    });
+  };
   return (
     <div className="bg-base-100 sticky top-0 z-30 ">
       <div className="navbar shadow-sm  ">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
+            </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
+              {links}
+            </ul>
           </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            {links}
-          </ul>
+          <Link to={"/"} className=" text-xl p-0 md:p-5">
+            <Logo></Logo>
+          </Link>
         </div>
-        <Link to={'/'} className=" text-xl p-0 md:p-5">
-          <Logo></Logo>
-        </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
-      </div>
-      <div className="navbar-end">
-        <div className="flex items-center mr-4">
-                <input type="checkbox" className="toggle" name="" />
-              </div>
-        {
-          users? (
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
+        </div>
+        <div className="navbar-end">
+          <div className="flex items-center mr-4">
+            <input type="checkbox" className="toggle" name="" />
+          </div>
+          {users ? (
             <div className="flex items-center gap-3">
-              
               <div className="">
-                <img src={users?.photoURL} className="h-10 w-10 rounded-full" alt={users?.displayName} />
+                <img
+                  src={users?.photoURL}
+                  className="h-10 w-10 rounded-full"
+                  alt={users?.displayName}
+                />
               </div>
-              <button className="bg-indigo-600 text-center px-3 py-2 rounded-lg">Log Out</button>
+              <button
+                onClick={logOutUser}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer px-3 py-2 rounded-lg"
+              >
+                Log Out
+              </button>
             </div>
           ) : (
             <div className="flex gap-2 items-center">
-              <Link to={'/login'}>
-              <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">Login</button></Link>
-              <Link to={'/register'}>
-              <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">Register</button></Link>
+              <Link to={"/login"}>
+                <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">
+                  Login
+                </button>
+              </Link>
+              <Link to={"/register"}>
+                <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">
+                  Register
+                </button>
+              </Link>
             </div>
-          )
-        }
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
