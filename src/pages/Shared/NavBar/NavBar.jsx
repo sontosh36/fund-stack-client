@@ -26,7 +26,7 @@ const NavBar = () => {
         <>
           <li>
             <NavLink
-              to="/dashbooard"
+              to="/dashboard"
               className="hover:text-blue-500 font-semibold text-md"
             >
               Dashboard
@@ -109,7 +109,7 @@ const NavBar = () => {
               </div>
               <button
                 onClick={logOutUser}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer px-3 py-2 rounded-lg"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer px-2 md:px-3 py-1 md:py-2 rounded-lg"
               >
                 Log Out
               </button>
@@ -117,12 +117,12 @@ const NavBar = () => {
           ) : (
             <div className="flex gap-2 items-center">
               <Link to={"/login"}>
-                <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">
+                <button className="bg-indigo-600 text-center rounded-lg px-2 md:px-3 py-1 md:py-2 font-medium hover:bg-indigo-700 duration-300 text-white">
                   Login
                 </button>
               </Link>
               <Link to={"/register"}>
-                <button className="bg-indigo-600 text-center rounded-lg px-3 py-2 font-medium hover:bg-indigo-700 duration-300 text-white">
+                <button className="bg-indigo-600 text-center rounded-lg px-2 md:px-3 py-1 md:py-2 font-medium hover:bg-indigo-700 duration-300 text-white">
                   Register
                 </button>
               </Link>

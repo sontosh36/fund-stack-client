@@ -23,9 +23,9 @@ const FeaturedLoan = () => {
     );
   }
   return (
-    <div className="bg-base-200 py-16 px-4 lg:px-8">
+    <div className="bg-base-200 pb-7 md:pb-10 px-4 lg:px-8 pt-8 md:pt-15">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Available Loans
         </h1>
         <p className="text-lg text-gray-400">

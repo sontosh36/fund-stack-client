@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { CiLogin } from "react-icons/ci";
-import Swal from "sweetalert2";
 
 const Login = () => {
   const location = useLocation();
@@ -46,6 +45,7 @@ const Login = () => {
           email: res.user.email,
           name: res.user.displayName,
           photoURL: res.user.photoURL,
+          role: 'borrower',
         };
         axios
           .post("/users", userInfo)

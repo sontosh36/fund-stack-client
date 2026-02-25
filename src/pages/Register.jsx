@@ -24,6 +24,7 @@ const Register = () => {
           email: res.user.email,
           name: data.name,
           photoURL: data.photoURL,
+          role: 'borrower',
         };
         axios.post("/users", userInfo)
           .then((res) => {
@@ -46,6 +47,7 @@ const Register = () => {
           email: res.user.email,
           name: res.user.displayName,
           photoURL: res.user.photoURL,
+          role: "borrower",
         };
         axios.post("/users", userInfo)
           .then((res) => {
