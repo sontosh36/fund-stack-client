@@ -17,7 +17,16 @@ const LoanDetails = () => {
   }, [id, axiosSecure]);
 
   if (loading) {
-    return <LoadingSkeleton></LoadingSkeleton>;
+    return (
+      <div className="bg-base-300 min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <span className="loading loading-spinner loading-xl text-indigo-600"></span>
+          <p className="text-md text-gray-500 animate-pulse">
+            Loading
+          </p>
+        </div>
+      </div>
+    );
   }
   const {
     image,
@@ -29,7 +38,7 @@ const LoanDetails = () => {
     emiPlans,
   } = loan;
   return (
-    <div className="bg-base-300 min-h-screen py-12 px-4">
+    <div className="bg-base-300 py-12 px-4">
       <div className="max-w-7xl mx-auto bg-base-400 shadow-xl rounded-2xl overflow-hidden">
         <div className="grid md:grid-cols-2 gap-10 p-5 md:p-8">
           {/* Image Section */}

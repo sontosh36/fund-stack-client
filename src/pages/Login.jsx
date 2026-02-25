@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Logo from "../components/logo/Logo";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
@@ -7,8 +7,10 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { CiLogin } from "react-icons/ci";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const axios = useAxiosSecure();
   const { signInUser, signInGoogle } = useAuth();
@@ -22,10 +24,19 @@ const Login = () => {
     signInUser(data.email, data.password)
       .then(() => {
         toast.success("Login Successfully");
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        let errorMessage = "Something went wrong!";
+        if (error.code === "auth/user-not-found") {
+          errorMessage = "No user found with this email";
+        } else if (error.code === "auth/wrong-password") {
+          errorMessage = "Incorrect Password";
+        } else if (error.code === "auth/invalid-credential") {
+          errorMessage = "Email or Password is Incorrect!";
+        }
+
+        toast.error(errorMessage);
       });
   };
   const handleLoginGoogle = () => {
@@ -42,7 +53,7 @@ const Login = () => {
             if (res.data.insertedId) {
               toast.success("Login successfully");
             }
-            navigate("/");
+            navigate(location?.state || "/");
           })
           .catch((err) => {
             console.log(err);
