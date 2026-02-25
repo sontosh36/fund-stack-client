@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import LoadingSkeleton from "../Loading/LoadingSkeleton";
 
 const LoanDetails = () => {
   const { id } = useParams();
