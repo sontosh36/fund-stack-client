@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import useAuth from "./../../../hooks/useAuth";
 import Logo from "./../../../components/logo/Logo";
@@ -52,6 +52,15 @@ const NavBar = () => {
       </li>
     </>
   );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
   const logOutUser = () => {
     logOut().then(() => {
       toast.success("logOut Successfully");
@@ -96,7 +105,12 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex items-center mr-4">
-            <input type="checkbox" className="toggle" name="" />
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              checked={theme === "dark"}
+              className="toggle"
+            />
           </div>
           {users ? (
             <div className="flex items-center gap-3">
@@ -109,7 +123,7 @@ const NavBar = () => {
               </div>
               <button
                 onClick={logOutUser}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer px-2 md:px-3 py-1 md:py-2 rounded-lg"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer px-2 md:px-3 py-1 md:py-2 rounded-lg transition duration-200"
               >
                 Log Out
               </button>

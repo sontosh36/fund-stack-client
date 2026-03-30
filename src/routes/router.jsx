@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import LoanDetails from "../components/LoanDetails/LoanDetails";
+import About from "../pages/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             <LoanDetails></LoanDetails>
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/about',
+        Component: About,
       },
       {
         path: "/login",

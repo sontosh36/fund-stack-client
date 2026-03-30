@@ -29,7 +29,7 @@ const HowItWorks = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-6 md:mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">How It Works</h2>
+          <h2 className="text-gray-700 text-3xl md:text-4xl font-bold mt-9">How It Works</h2>
           <p className="text-gray-500 mt-3">
             Simple. Fast. Secure Microloan Process.
           </p>
@@ -46,7 +46,7 @@ const HowItWorks = () => {
                 {step.icon}
               </div>
 
-              <h4 className="font-bold text-xl mb-3">{step.title}</h4>
+              <h4 className="text-gray-700 font-bold text-xl mb-3">{step.title}</h4>
 
               <p className="text-gray-500 text-sm">{step.description}</p>
             </div>
