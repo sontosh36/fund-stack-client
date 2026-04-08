@@ -37,13 +37,13 @@ const About = () => {
     },
   ];
   return (
-    <section className="max-w-7xl mx-auto px-5">
+    <section className="max-w-7xl bg-gray-200 dark:bg-gray-800 mx-auto px-5">
       <div className=" flex flex-col items-center py-16 ">
         {/* hero */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-3xl mb-10"
+          className="text-center max-w-3xl mb-10 dark:text-gray-100"
         >
           <h1 className="text-4xl font-bold mb-4">About FundStack</h1>
           <p className="text-lg">
@@ -95,7 +95,7 @@ const About = () => {
           ))}
         </div>
         {/* team section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 dark:bg-gray-800">
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ const About = () => {
                 initial={{ opacity: 0, scale: 0.7 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.2 }}
-                className="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition"
+                className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
               >
                 <img
                   src={member.image}

@@ -24,7 +24,7 @@ const AllLoans = () => {
   }, [currentPage, searchText]);
 
   return (
-    <div className="max-w-7xl mx-auto bg-base-300 py-6 md:py-9">
+    <div className="max-w-7xl mx-auto bg-gray-300 dark:bg-gray-700 py-6 md:py-9">
       <div className="text-center">
         <div className="my-8 mx-auto space-y-3">
           <motion.h1
@@ -33,7 +33,7 @@ const AllLoans = () => {
             transition={{ duration: 0.4 }}
             className="text-2xl text-center font-bold md:text-3xl"
           >
-            All <span className="text-indigo-600 ">Loans</span> Products
+            All <span className="text-indigo-500 ">Loans</span> Products
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: -80 }}
@@ -90,7 +90,7 @@ const AllLoans = () => {
         {currentPage > 0 && (
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
-            className="btn"
+            className="btn btn-primary"
           >
             Prev
           </button>
@@ -108,7 +108,7 @@ const AllLoans = () => {
         {currentPage < totalPage - 1 && (
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
-            className="btn"
+            className="btn btn-primary"
           >
             Next
           </button>

@@ -8,6 +8,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import LoanDetails from "../components/LoanDetails/LoanDetails";
 import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: '/about',
         Component: About,
+      },
+      {
+        path: '/contact',
+        Component: Contact,
       },
       {
         path: "/login",

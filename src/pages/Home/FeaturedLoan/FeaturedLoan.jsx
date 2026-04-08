@@ -23,7 +23,7 @@ const FeaturedLoan = () => {
     );
   }
   return (
-    <div className="bg-base-200 pb-7 md:pb-10 px-4 lg:px-8 pt-8 md:pt-15">
+    <div className="bg-gray-200 dark:bg-gray-700 pb-7 md:pb-10 px-4 lg:px-8 pt-8 md:pt-15">
       <div className="text-center mb-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Available Loans

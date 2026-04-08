@@ -65,14 +65,14 @@ const Register = () => {
       });
   };
   return (
-    <div className="py-15">
-      <div className="mx-auto card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-4">
+    <div className="py-15 dark:bg-slate-800">
+      <div className="mx-auto card bg-gray-200 dark:bg-slate-800 w-full max-w-sm shrink-0 shadow-2xl mt-4">
         <div className="card-body">
           <div className="flex flex-col items-center justify-center">
             <h2>{<Logo></Logo>}</h2>
             <p className="mt-2 text-sm text-gray-400">
               Already have an account? Please{" "}
-              <Link className="text-indigo-600 hover:underline " to={"/login"}>
+              <Link className="text-indigo-500 hover:underline " to={"/login"}>
                 Login
               </Link>
             </p>

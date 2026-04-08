@@ -64,8 +64,8 @@ const Login = () => {
       });
   };
   return (
-    <div className="py-13">
-      <div className="mx-auto card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-4">
+    <div className="py-13 dark:bg-gray-800">
+      <div className="mx-auto card bg-gray-200 dark:bg-slate-800 w-full max-w-sm shrink-0 shadow-2xl mt-4">
         <div className="card-body">
           <div className="flex flex-col items-center justify-center">
             <h2>{<Logo></Logo>}</h2>
