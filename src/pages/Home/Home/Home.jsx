@@ -3,6 +3,7 @@ import Hero from "../../../components/Hero/Hero";
 import FeaturedLoan from "../FeaturedLoan/FeaturedLoan";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import CustomerFeedback from "../CustomerFeedback/CustomerFeedback";
+import TrustSecurity from "../TrustSecurity/TrustSecurity";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <FeaturedLoan />
       <HowItWorks />
       <CustomerFeedback/>
+      <TrustSecurity/>
     </div>
   );
 };
