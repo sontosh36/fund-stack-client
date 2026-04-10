@@ -6,14 +6,14 @@ import { CiMail } from "react-icons/ci";
 import Logo from "../../../components/logo/Logo";
 const Footer = () => {
   return (
-    <footer className=" border-t border-base-300 bg-base-400">
+    <footer className=" border-t border-base-300 bg-gray-100 dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-5 md:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-4">
           <div className="space-y-4">
-            <Link to="/" className="">
+            <Link to="/">
               <Logo/>
             </Link>
-            <p className="text-gray-400 leading-relaxed mt-2">
+            <p className="leading-relaxed mt-2">
               Fund Stack is a web-based platform for managing microloan applications, approvals, EMI schedules, repayments, borrower records through a secure, centerlized and user-friendly dashboard.
             </p>
           </div>
@@ -22,14 +22,14 @@ const Footer = () => {
             <h3 className="font-semibold mb-2 text-xl">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:underline">
+                <Link to="/" className="hover:underline">
                   Home
                 </Link>
               </li>
               <li>
                 <Link
                   to="/all-loans"
-                  className="text-gray-400 hover:underline"
+                  className="hover:underline"
                 >
                   All Loans
                 </Link>
@@ -37,7 +37,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-400 hover:underline"
+                  className="hover:underline"
                 >
                   About Us
                 </Link>
@@ -45,7 +45,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-400 hover:underline"
+                  className="hover:underline"
                 >
                   Contact
                 </Link>
@@ -56,15 +56,15 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-2 text-xl">Contact Us</h3>
             <ul className="space-y-3 mb-2">
-              <li className="flex items-start space-x-3 text-gray-400">
+              <li className="flex items-start space-x-3">
                 <FiMapPin size={25} />
                 <span>Motijheel Commercial Area, Dhaka-1000, Bangladesh</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-400">
+              <li className="flex items-center space-x-3">
                 <FaPhone size={18} />
                 <span>+8801459621402</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-400">
+              <li className="flex items-center space-x-3">
                 <CiMail size={18} />
                 <span>support.admin@fundstack.com</span>
               </li>

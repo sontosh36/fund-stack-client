@@ -47,7 +47,7 @@ const CustomerFeedback = () => {
   return (
     <section className="bg-gray-200 dark:bg-gray-600 py-16 px-4 md:px-10">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-300">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">
           What Our Users Say
         </h2>
         <p className="mt-6 text-gray-500 dark:text-gray-100 max-w-2xl mx-auto">
@@ -56,11 +56,10 @@ const CustomerFeedback = () => {
         </p>
         {/* slider */}
         <Swiper
-          loop={true}
+          slidesPerView={2}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={2}
           coverflowEffect={{
             rotate: 50,
             stretch: 0,

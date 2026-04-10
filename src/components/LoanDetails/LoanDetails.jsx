@@ -37,7 +37,7 @@ const LoanDetails = () => {
     emiPlans,
   } = loan;
   return (
-    <div className="bg-base-300 py-12 px-4">
+    <div className="bg-gray-300 dark:bg-slate-700 py-12 px-4">
       <div className="max-w-7xl mx-auto bg-base-400 shadow-xl rounded-2xl overflow-hidden">
         <div className="grid md:grid-cols-2 gap-10 p-5 md:p-8">
           {/* Image Section */}
@@ -65,12 +65,12 @@ const LoanDetails = () => {
 
               {/* Loan Info */}
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between border-b pb-2">
+                <div className="flex justify-between border-b dark:border-gray-500 pb-2">
                   <span className="font-medium">Max Loan Amount</span>
                   <span className="font-semibold">${maxLoanLimit}</span>
                 </div>
 
-                <div className="flex justify-between border-b pb-2">
+                <div className="flex justify-between border-b dark:border-gray-500 pb-2">
                   <span className="font-medium">Interest Rate</span>
                   <span className="font-semibold">{interestRate}%</span>
                 </div>
@@ -87,7 +87,7 @@ const LoanDetails = () => {
                     {emiPlans.map((plan, index) => (
                       <div
                         key={index}
-                        className="border rounded-xl p-4 text-center hover:shadow-md transition duration-300 bg-base-400"
+                        className="border dark:border-gray-500 rounded-xl p-4 text-center hover:shadow-md transition duration-300 bg-base-400"
                       >
                         <h4 className="text-lg font-bold text-blue-600 mb-2">
                           {plan.month} Months
@@ -106,7 +106,7 @@ const LoanDetails = () => {
             </div>
 
             {/* CTA Button */}
-            <Link to={"/apply-loan"}>
+            <Link to={"/all-loans"}>
               <button className="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-semibold py-3 rounded-lg shadow-md cursor-pointer">
                 Apply for Loan
               </button>

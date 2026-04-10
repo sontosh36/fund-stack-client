@@ -4,6 +4,7 @@ import FeaturedLoan from "../FeaturedLoan/FeaturedLoan";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import CustomerFeedback from "../CustomerFeedback/CustomerFeedback";
 import TrustSecurity from "../TrustSecurity/TrustSecurity";
+import FaQuestion from "../Faq/FaQuestion";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <HowItWorks />
       <CustomerFeedback/>
       <TrustSecurity/>
+      <FaQuestion/>
     </div>
   );
 };

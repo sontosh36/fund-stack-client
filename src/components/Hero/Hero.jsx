@@ -24,7 +24,7 @@ const Hero = () => {
           {/* CTA Button */}
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <Link
-              to={"/apply-loan"}
+              to={"/all-loans"}
               className="text-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow-md hover:bg-indigo-700 hover:scale-105 transition duration-300 "
             >
               Apply for Loan
