@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import LoanDetails from "../components/LoanDetails/LoanDetails";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyLoans from "../pages/Dashboard/BorrowerDashboard/MyLoans";
 
 export const router = createBrowserRouter([
   {
@@ -50,4 +52,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: 'dashboard',
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+      {
+        path: 'my-loans',
+        Component: MyLoans,
+      }
+    ]
+  }
 ]);
