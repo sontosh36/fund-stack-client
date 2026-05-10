@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { IoCloseSharp } from "react-icons/io5";
+import { useForm } from "react-hook-form";
+import useAuth from "./../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const LoanDetails = () => {
   const { id } = useParams();
   const [loan, setLoan] = useState(null);
+  const [open, setOpen] = useState(false);
+  const { users } = useAuth();
   const [loading, setLoading] = useState(true);
+  const { register, handleSubmit } = useForm();
 
   const axiosSecure = useAxiosSecure();
   useEffect(() => {
@@ -20,9 +27,7 @@ const LoanDetails = () => {
       <div className="bg-base-300 min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <span className="loading loading-spinner loading-xl text-indigo-600"></span>
-          <p className="text-md text-gray-500 animate-pulse">
-            Loading
-          </p>
+          <p className="text-md text-gray-500 animate-pulse">Loading</p>
         </div>
       </div>
     );
@@ -36,6 +41,34 @@ const LoanDetails = () => {
     interestRate,
     emiPlans,
   } = loan;
+
+  const handleLoanApply = async (data) => {
+    try {
+      console.log(data);
+      Swal.fire({
+        title: "Submit Application?",
+        text: "Your application won't revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed)
+          // send loan application to the database
+          axiosSecure.post("/loanApplication", data).then(() => {
+            Swal.fire({
+              title: "Done",
+              text: "Your Application submitted.",
+              icon: "success",
+            });
+          });
+          setOpen(false);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="bg-gray-300 dark:bg-slate-700 py-12 px-4">
       <div className="max-w-7xl mx-auto bg-base-400 shadow-xl rounded-2xl overflow-hidden">
@@ -55,7 +88,7 @@ const LoanDetails = () => {
           {/* Details Section */}
           <div className="flex flex-col justify-between">
             <div>
-              <h2 className="text-3xl text-center md:text-left  font-bold mb-4">
+              <h2 className="text-3xl text-center md:text-left font-bold mb-4">
                 {title}
               </h2>
 
@@ -106,14 +139,164 @@ const LoanDetails = () => {
             </div>
 
             {/* CTA Button */}
-            <Link to={"/all-loans"}>
-              <button className="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-semibold py-3 rounded-lg shadow-md cursor-pointer">
-                Apply for Loan
-              </button>
-            </Link>
+            <button
+              onClick={() => setOpen(true)}
+              className="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-semibold py-3 rounded-lg shadow-md cursor-pointer"
+            >
+              Apply for Loan
+            </button>
           </div>
         </div>
       </div>
+      {open && (
+        <div className="fixed flex items-center justify-center z-30 p-6 inset-0 backdrop-blur-sm">
+          <div className="w-full max-w-xl rounded-2xl shadow-xl bg-gray-50">
+            <div className="p-4 text-white relative bg-gradient-to-r from-cyan-700 to-blue-700">
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute right-2 top-3 p-3 cursor-pointer"
+              >
+                <IoCloseSharp size={25} />
+              </button>
+              <h2 className="text-2xl font-bold">Apply for {title}</h2>
+              <p className="text-md font-semibold text-cyan-100 mt-1">
+                Fill the form with correct information
+              </p>
+            </div>
+
+            <form
+              onSubmit={handleSubmit(handleLoanApply)}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6"
+            >
+              {/* Full name */}
+              <div className="sm:col-span-2">
+                <input
+                  type="text"
+                  {...register("fullName", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="Enter Full Name"
+                />
+              </div>
+              {/* borrower email */}
+              <div>
+                <input
+                  type="text"
+                  {...register("borrowerEmail")}
+                  defaultValue={users?.email}
+                  className="input bg-gray-100 w-full"
+                  readOnly
+                />
+              </div>
+              {/* interest rate */}
+              <div>
+                <input
+                  type="text"
+                  {...register("interestRate")}
+                  defaultValue={interestRate}
+                  className="input bg-gray-100 w-full"
+                  readOnly
+                />
+              </div>
+              {/* loan title */}
+              <div>
+                <input
+                  type="text"
+                  {...register("loanTitle")}
+                  defaultValue={title}
+                  className="input bg-gray-100 w-full"
+                  readOnly
+                />
+              </div>
+              {/* NID or passport*/}
+              <div>
+                <input
+                  type="number"
+                  {...register("nidOrPassport", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="NID or Passport Number"
+                />
+              </div>
+              {/* Contact Number */}
+              <div>
+                <input
+                  type="number"
+                  {...register("contactNumber", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="Contact Number"
+                />
+              </div>
+              {/* Income source */}
+              <div>
+                <input
+                  type="text"
+                  {...register("incomeSource", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="Income source"
+                />
+              </div>
+              {/* monthly Income */}
+              <div>
+                <input
+                  type="number"
+                  {...register("monthlyIncome", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="Monthly Income"
+                />
+              </div>
+              {/* loan Amount */}
+              <div className="sm:col-span-2">
+                <input
+                  type="number"
+                  {...register("loanAmount", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="Loan Amount"
+                />
+              </div>
+              {/* Reason */}
+              <div className="sm:col-span-2">
+                <textarea
+                  {...register("reasonForLoan", { required: true })}
+                  rows={5}
+                  className="input bg-gray-100 w-full resize-none outline-0"
+                  placeholder="Why do you need this loan?"
+                />
+              </div>
+              {/* Address */}
+              <div className="sm:col-span-2">
+                <input
+                  type="text"
+                  {...register("address", { required: true })}
+                  className="input bg-gray-100 w-full outline-0"
+                  placeholder="Your Address"
+                />
+              </div>
+              {/* extra note */}
+              <div className="sm:col-span-2">
+                <textarea
+                  {...register("note")}
+                  rows={5}
+                  className="input bg-gray-100 w-full resize-none outline-0"
+                  placeholder="Optional Note"
+                />
+              </div>
+
+              {/* button */}
+              <div className="sm:col-span-2 flex justify-end gap-3 mt-2">
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="btn bg-purple-600 text-white">
+                  Submit Application
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
