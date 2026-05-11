@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 const FAQItems = ({ faq, isOpen, toggle }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       className="p-4 cursor-pointer"
       onClick={toggle}
     >

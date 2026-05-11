@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { IoCloseSharp } from "react-icons/io5";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ const LoanDetails = () => {
   const [open, setOpen] = useState(false);
   const { users } = useAuth();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
   const axiosSecure = useAxiosSecure();
@@ -64,6 +65,7 @@ const LoanDetails = () => {
             });
           });
           setOpen(false);
+          navigate('/dashboard/my-loans');
       });
     } catch (err) {
       console.log(err);
