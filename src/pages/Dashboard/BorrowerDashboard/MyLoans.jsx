@@ -44,8 +44,17 @@ const MyLoans = () => {
         });
     });
   };
+  const handlePayment = async(loan) => {
+    const paymentInfo = {
+      application_Id: loan._id,
+      borrowerEmail: loan.borrowerEmail,
+      loanTitle: loan.loanTitle
+    };
+    const res = await axiosSecure.post('/create-checkout-session', paymentInfo)
+    window.location.assign(res.data.url);
+  };
   return (
-    <div className="w-full px-2 sm:px-2 md:px-2 py-2">
+    <div className="w-full px-2 py-2">
       <div className="hidden lg:block overflow-x-auto rounded-xl shadow">
         <table className="table table-zebra">
           {/* head */}
@@ -97,7 +106,12 @@ const MyLoans = () => {
                 </td>
                 <td className="space-x-2">
                   {loan.applicationFeeStatus === "unpaid" && (
-                    <button className="btn btn-sm btn-primary">Pay</button>
+                    <button
+                      onClick={() => handlePayment(loan)}
+                      className="btn btn-sm btn-primary"
+                    >
+                      Pay
+                    </button>
                   )}
                   {loan.status === "pending" && (
                     <button
@@ -182,7 +196,12 @@ const MyLoans = () => {
 
             <div className="flex justify-between flex-wrap gap-2 mt-4">
               {loan.applicationFeeStatus === "unpaid" && (
-                <button className="btn btn-md btn-primary">Pay</button>
+                <button
+                  onClick={() => handlePayment(loan)}
+                  className="btn btn-md btn-primary"
+                >
+                  Pay
+                </button>
               )}
 
               {loan.status === "pending" && (
@@ -307,7 +326,7 @@ const MyLoans = () => {
 
                 <span className="text-xs opacity-60">
                   Submitted:{" "}
-                  { new Date(selectedLoan.submitedAt).toLocaleDateString()}
+                  {new Date(selectedLoan.submitedAt).toLocaleDateString()}
                 </span>
               </div>
             </div>

@@ -93,7 +93,7 @@ const DashboardLayout = () => {
           </nav>
 
           {/* Page Content */}
-          <main className="flex-1 p-2 md:p-4 overflow-x-hidden">
+          <main className="flex-1 p-2 overflow-x-hidden">
             <Outlet />
           </main>
         </div>
