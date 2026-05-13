@@ -45,7 +45,6 @@ const LoanDetails = () => {
 
   const handleLoanApply = async (data) => {
     try {
-      console.log(data);
       Swal.fire({
         title: "Submit Application?",
         text: "Your application won't revert this!",
@@ -153,16 +152,16 @@ const LoanDetails = () => {
         </div>
       </div>
       {open && (
-        <div className="fixed flex items-center justify-center z-30 p-6 inset-0 backdrop-blur-sm">
-          <div className="w-full max-w-xl rounded-2xl shadow-xl bg-gray-50">
-            <div className="p-4 text-white relative bg-gradient-to-r from-cyan-700 to-blue-700">
+        <div className="fixed flex items-center justify-center z-30 p-3 inset-0 backdrop-blur-sm">
+          <div className="w-full max-w-md max-h-[90vh] rounded-xl overflow-y-auto shadow-xl bg-gray-50">
+            <div className="p-2 text-white relative bg-gradient-to-r from-cyan-700 to-blue-500">
               <button
                 onClick={() => setOpen(false)}
                 className="absolute right-2 top-3 p-3 cursor-pointer"
               >
                 <IoCloseSharp size={25} />
               </button>
-              <h2 className="text-2xl font-bold">Apply for {title}</h2>
+              <h2 className="text-xl font-bold">Apply for {title}</h2>
               <p className="text-md font-semibold text-cyan-100 mt-1">
                 Fill the form with correct information
               </p>
