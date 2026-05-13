@@ -57,15 +57,17 @@ const LoanDetails = () => {
       }).then((result) => {
         if (result.isConfirmed)
           // send loan application to the database
-          axiosSecure.post("/loanApplication", data).then(() => {
-            Swal.fire({
-              title: "Done",
-              text: "Your Application submitted.",
-              icon: "success",
-            });
+          axiosSecure.post("/loanApplication", data).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Done",
+                text: "Your Application submitted.",
+                icon: "success",
+              });
+              navigate("/dashboard/my-loans");
+              setOpen(false);
+            }
           });
-          setOpen(false);
-          navigate('/dashboard/my-loans');
       });
     } catch (err) {
       console.log(err);

@@ -3,10 +3,13 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import PaymentDetailsModal from "./PaymentDetailsModal";
 
 const MyLoans = () => {
   const [selectedLoan, setSelectedLoan] = useState(null);
-  const modalRef = useRef(null);
+  const [selectedPaymentId, setSelectedPaymentId] = useState(null);
+  const paymentModalRef = useRef(null);
+  const loanModalRef = useRef(null);
   const { users } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { data: loans = [], refetch } = useQuery({
@@ -20,8 +23,14 @@ const MyLoans = () => {
   });
   const viewLoan = (loan) => {
     setSelectedLoan(loan);
-    modalRef.current.showModal();
+    loanModalRef.current.showModal();
   };
+
+  const openPaymentModal = (loanId) => {
+    setSelectedPaymentId(loanId);
+    paymentModalRef.current.showModal();
+  };
+
   const handleLoanCancelation = (id) => {
     console.log(id);
     Swal.fire({
@@ -44,13 +53,13 @@ const MyLoans = () => {
         });
     });
   };
-  const handlePayment = async(loan) => {
+  const handlePayment = async (loan) => {
     const paymentInfo = {
       application_Id: loan._id,
       borrowerEmail: loan.borrowerEmail,
-      loanTitle: loan.loanTitle
+      loanTitle: loan.loanTitle,
     };
-    const res = await axiosSecure.post('/create-checkout-session', paymentInfo)
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
     window.location.assign(res.data.url);
   };
   return (
@@ -78,28 +87,31 @@ const MyLoans = () => {
                 <td>{loan.loanAmount}</td>
                 <td>
                   {loan.applicationFeeStatus === "paid" ? (
-                    <span className="bg-green-500 text-black px-2 py-2 rounded-2xl">
+                    <button
+                      onClick={() => openPaymentModal(loan._id)}
+                      className="btn btn-md bg-green-500 text-black px-4 py-2 rounded-2xl"
+                    >
                       Paid
-                    </span>
+                    </button>
                   ) : (
-                    <span className="bg-amber-500 text-white px-2 py-2 rounded-2xl">
+                    <span className="bg-amber-500 text-black px-4 py-2 rounded-2xl">
                       Unpaid
                     </span>
                   )}
                 </td>
                 <td>
                   {loan.status === "approved" && (
-                    <span className="bg-green-500 text-black px-2 py-2 rounded-2xl">
+                    <span className="bg-green-500 text-black px-4 py-2 rounded-2xl">
                       Approved
                     </span>
                   )}
                   {loan.status === "pending" && (
-                    <span className="bg-yellow-500 text-black px-2 py-2 rounded-2xl">
+                    <span className="bg-yellow-500 text-black px-4 py-2 rounded-2xl">
                       Pending
                     </span>
                   )}
                   {loan.status === "rejected" && (
-                    <span className="bg-red-300 text-black px-2 py-2 rounded-2xl">
+                    <span className="bg-red-300 text-black px-4 py-2 rounded-2xl">
                       Rejected
                     </span>
                   )}
@@ -163,9 +175,12 @@ const MyLoans = () => {
                 <p>
                   <span className="font-semibold">Application Fee:</span>{" "}
                   {loan.applicationFeeStatus === "paid" ? (
-                    <span className="bg-green-500 text-black px-2 py-1 rounded-full text-xs">
+                    <button
+                      onClick={() => openPaymentModal(loan._id)}
+                      className="btn btn-md bg-green-500 text-black px-2 py-1 rounded-full text-xs"
+                    >
                       Paid
-                    </span>
+                    </button>
                   ) : (
                     <span className="bg-amber-500 text-white px-2 py-1 rounded-full text-xs">
                       Unpaid
@@ -232,7 +247,7 @@ const MyLoans = () => {
         ))}
       </div>
 
-      <dialog ref={modalRef} className="modal">
+      <dialog ref={loanModalRef} className="modal">
         <div className="modal-box w-11/12 max-w-3xl bg-base-100 text-base-content">
           {/* Header */}
           <h3 className="font-bold text-2xl text-center mb-6">Loan Details</h3>
@@ -340,6 +355,11 @@ const MyLoans = () => {
           </div>
         </div>
       </dialog>
+
+      <PaymentDetailsModal
+        loanId={selectedPaymentId}
+        modalRef={paymentModalRef}
+      />
     </div>
   );
 };
