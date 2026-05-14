@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
-import { FaHandHoldingUsd, FaTimes, FaBars, FaHome, FaUserCog } from "react-icons/fa";
+import { FaHandHoldingUsd, FaTimes, FaBars, FaHome, FaUserCog, FaFileInvoiceDollar} from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../hooks/useAuth";
 
@@ -49,7 +49,7 @@ const DashboardLayout = () => {
           </div>
 
           {/* Sidebar Menu */}
-          <ul className="menu p-4 space-y-2">
+          <ul className="menu p-2 space-y-2">
             {/* My Loans */}
             <li>
               <NavLink
@@ -79,6 +79,16 @@ const DashboardLayout = () => {
               >
                 <FaUserCog size={18} />
                <span className="dark:text-white">Manage Users</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/all-loan"
+                onClick={closeDrawer}
+                className="flex items-center gap-3 rounded-lg"
+              >
+                <FaFileInvoiceDollar size={18} />
+               <span className="dark:text-white">All Loans</span>
               </NavLink>
             </li>
           </ul>
@@ -114,7 +124,7 @@ const DashboardLayout = () => {
           </nav>
 
           {/* Page Content */}
-          <main className="flex-1 p-2 overflow-x-hidden">
+          <main className="flex-1 overflow-x-hidden">
             <Outlet />
           </main>
         </div>

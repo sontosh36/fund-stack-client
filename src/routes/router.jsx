@@ -15,6 +15,7 @@ import PaymentSuccess from "../pages/Dashboard/BorrowerDashboard/PaymentSuccess"
 import PaymentCancel from "../pages/Dashboard/BorrowerDashboard/PaymentCancel";
 import MyProfile from "../pages/Dashboard/BorrowerDashboard/MyProfile";
 import ManageUsers from "../pages/Dashboard/AdminDashboard/ManageUsers";
+import AllLoan from "../pages/Dashboard/AdminDashboard/AllLoan";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: 'manage-users',
         Component: ManageUsers,
+      },
+      {
+        path: 'all-loan',
+        Component: AllLoan
       },
       {
         path: 'payment-success',
