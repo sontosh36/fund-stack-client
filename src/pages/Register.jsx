@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../components/logo/Logo";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -10,8 +10,9 @@ import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const axios = useAxiosSecure();
-  const { registerUser, signInGoogle } = useAuth();
+  const { registerUser, signInGoogle, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
@@ -24,14 +25,20 @@ const Register = () => {
           email: res.user.email,
           name: data.name,
           photoURL: data.photoURL,
-          role: 'borrower',
         };
-        axios.post("/users", userInfo)
-          .then((res) => {
-            if (res.data.insertedId) {
-              toast.success("Registration Successfully");
-              navigate("/");
-            }
+        axios.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            toast.success("Registration Successfully");
+          }
+        });
+        // update user profile to firebase
+        const userProfile = {
+          displayName: data.name,
+          photoURL: data.photoURL,
+        };
+        updateUserProfile(userProfile)
+          .then(() => {
+            navigate(location.state || "/");
           })
           .catch((err) => console.log(err));
       })
@@ -47,13 +54,13 @@ const Register = () => {
           email: res.user.email,
           name: res.user.displayName,
           photoURL: res.user.photoURL,
-          role: "borrower",
         };
-        axios.post("/users", userInfo)
+        axios
+          .post("/users", userInfo)
           .then((res) => {
             if (res.data.insertedId) {
               toast.success("Registration successfully");
-              navigate("/");
+              navigate(location.state || "/");
             }
           })
           .catch((err) => {
@@ -72,7 +79,11 @@ const Register = () => {
             <h2>{<Logo></Logo>}</h2>
             <p className="mt-2 text-sm text-gray-400">
               Already have an account? Please{" "}
-              <Link className="text-indigo-500 hover:underline " to={"/login"}>
+              <Link
+                state={location.state}
+                className="text-indigo-500 hover:underline "
+                to={"/login"}
+              >
                 Login
               </Link>
             </p>
@@ -102,7 +113,10 @@ const Register = () => {
               <label className="label">Email</label>
               <input
                 type="email"
-                {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
+                {...register("email", {
+                  required: true,
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                })}
                 className="input outline-0 w-full"
                 placeholder="Email"
               />
@@ -118,7 +132,7 @@ const Register = () => {
                 type="text"
                 className="input outline-0 w-full "
                 placeholder="photoURL"
-                {...register("photoURL", {required: true})}
+                {...register("photoURL", { required: true })}
               />
               {errors.photoURL?.type === "required" && (
                 <p className="text-red-500">photoURL is required</p>
@@ -170,7 +184,10 @@ const Register = () => {
                   One sepcial characters.
                 </p>
               )}
-              <button type="submit" className="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold mt-4">
+              <button
+                type="submit"
+                className="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold mt-4"
+              >
                 Register <CiLogin size={20} className="text-white" />
               </button>
             </fieldset>

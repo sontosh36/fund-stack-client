@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Logo from "../components/logo/Logo";
 import useAuth from "../hooks/useAuth";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
@@ -11,7 +10,6 @@ import { CiLogin } from "react-icons/ci";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const axios = useAxiosSecure();
   const { signInUser, signInGoogle } = useAuth();
   const {
     register,
@@ -40,24 +38,9 @@ const Login = () => {
   };
   const handleLoginGoogle = () => {
     signInGoogle()
-      .then((res) => {
-        const userInfo = {
-          email: res.user.email,
-          name: res.user.displayName,
-          photoURL: res.user.photoURL,
-          role: 'borrower',
-        };
-        axios
-          .post("/users", userInfo)
-          .then((res) => {
-            if (res.data.insertedId) {
-              toast.success("Login successfully");
-            }
-            navigate(location?.state || "/");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      .then(() => {
+        toast.success("Login successfully");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -71,7 +54,7 @@ const Login = () => {
             <h2>{<Logo></Logo>}</h2>
             <p className="mt-2 text-sm text-gray-400">
               Don't have an account? Please{" "}
-              <Link className="text-blue-500 hover:underline" to="/register">
+              <Link state={location.state} className="text-blue-500 hover:underline" to="/register">
                 Register
               </Link>
             </p>

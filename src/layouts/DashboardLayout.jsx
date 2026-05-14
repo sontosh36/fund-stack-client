@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
-import { FaHandHoldingUsd, FaTimes, FaBars, FaHome } from "react-icons/fa";
+import { FaHandHoldingUsd, FaTimes, FaBars, FaHome, FaUserCog } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 import useAuth from "../hooks/useAuth";
 
 const DashboardLayout = () => {
@@ -58,6 +59,26 @@ const DashboardLayout = () => {
               >
                 <FaHandHoldingUsd size={18} />
                <span className="dark:text-white"> My Loans</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/profile"
+                onClick={closeDrawer}
+                className="flex items-center gap-3 rounded-lg"
+              >
+                <CgProfile size={18} />
+               <span className="dark:text-white">My Profile</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/manage-users"
+                onClick={closeDrawer}
+                className="flex items-center gap-3 rounded-lg"
+              >
+                <FaUserCog size={18} />
+               <span className="dark:text-white">Manage Users</span>
               </NavLink>
             </li>
           </ul>

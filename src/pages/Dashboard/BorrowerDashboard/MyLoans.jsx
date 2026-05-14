@@ -248,32 +248,32 @@ const MyLoans = () => {
       </div>
 
       <dialog ref={loanModalRef} className="modal">
-        <div className="modal-box w-11/12 max-w-3xl bg-base-100 text-base-content">
+        <div className="modal-box w-10/12 max-w-xl max-h-[90vh] bg-base-100">
           {/* Header */}
-          <h3 className="font-bold text-2xl text-center mb-6">Loan Details</h3>
+          <h3 className="font-bold text-2xl text-center mb-3">Loan Details</h3>
 
           {selectedLoan && (
-            <div className="space-y-6">
+            <div className="space-y-2">
               {/* Personal Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Full Name</p>
                   <p className="font-semibold">{selectedLoan.fullName}</p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Email</p>
                   <p className="font-semibold break-all">
                     {selectedLoan.borrowerEmail}
                   </p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Contact</p>
                   <p className="font-semibold">{selectedLoan.contactNumber}</p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Address</p>
                   <p className="font-semibold">{selectedLoan.address}</p>
                 </div>
@@ -281,22 +281,22 @@ const MyLoans = () => {
 
               {/* Loan Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Loan Title</p>
                   <p className="font-semibold">{selectedLoan.loanTitle}</p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Loan Amount</p>
                   <p className="font-semibold">${selectedLoan.loanAmount}</p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Interest Rate</p>
                   <p className="font-semibold">{selectedLoan.interestRate}%</p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Monthly Income</p>
                   <p className="font-semibold">${selectedLoan.monthlyIncome}</p>
                 </div>
@@ -305,7 +305,7 @@ const MyLoans = () => {
               {/* Extra Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Fee Status */}
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Fee Status</p>
                   <span
                     className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${
@@ -319,7 +319,7 @@ const MyLoans = () => {
                 </div>
 
                 {/* Reason */}
-                <div className="p-3 rounded-lg bg-base-200">
+                <div className="p-2 rounded-lg bg-base-200">
                   <p className="text-xs opacity-70">Reason for Loan</p>
                   <p className="font-semibold">{selectedLoan.reasonForLoan}</p>
                 </div>
@@ -348,7 +348,7 @@ const MyLoans = () => {
           )}
 
           {/* Footer */}
-          <div className="modal-action mt-6">
+          <div className="modal-action mt-3">
             <form method="dialog">
               <button className="btn btn-sm btn-outline">Close</button>
             </form>

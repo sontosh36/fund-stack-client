@@ -157,7 +157,7 @@ const LoanDetails = () => {
             <div className="p-2 text-white relative bg-gradient-to-r from-cyan-700 to-blue-500">
               <button
                 onClick={() => setOpen(false)}
-                className="absolute right-2 top-3 p-3 cursor-pointer"
+                className="absolute right-2 top-3 p-2 cursor-pointer"
               >
                 <IoCloseSharp size={25} />
               </button>
@@ -169,7 +169,7 @@ const LoanDetails = () => {
 
             <form
               onSubmit={handleSubmit(handleLoanApply)}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 p-2"
             >
               {/* Full name */}
               <div className="sm:col-span-2">
@@ -284,7 +284,7 @@ const LoanDetails = () => {
               </div>
 
               {/* button */}
-              <div className="sm:col-span-2 flex justify-end gap-3 mt-2">
+              <div className="sm:col-span-2 flex justify-end gap-3">
                 <button
                   type="button"
                   className="btn"

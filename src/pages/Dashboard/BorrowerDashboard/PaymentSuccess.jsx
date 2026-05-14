@@ -38,7 +38,7 @@ const PaymentSuccess = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white mb-4">
             Payment Successful
           </h1>
 

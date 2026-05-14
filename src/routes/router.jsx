@@ -13,6 +13,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MyLoans from "../pages/Dashboard/BorrowerDashboard/MyLoans";
 import PaymentSuccess from "../pages/Dashboard/BorrowerDashboard/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/BorrowerDashboard/PaymentCancel";
+import MyProfile from "../pages/Dashboard/BorrowerDashboard/MyProfile";
+import ManageUsers from "../pages/Dashboard/AdminDashboard/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ export const router = createBrowserRouter([
       {
         path: 'my-loans',
         Component: MyLoans,
+      },
+      {
+        path:'profile',
+        Component: MyProfile,
+      },
+      {
+        path: 'manage-users',
+        Component: ManageUsers,
       },
       {
         path: 'payment-success',

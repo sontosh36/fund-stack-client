@@ -32,8 +32,8 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-  const updateUserProfile = (displayName, photoURL) => {
-    return updateProfile(auth.currentUser, { displayName, photoURL });
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
   };
   useEffect(() => {
     const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
@@ -45,13 +45,13 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
   const authInformation = {
+    users,
     registerUser,
     signInUser,
     signInGoogle,
     logOut,
-    updateUserProfile,
     loading,
-    users,
+    updateUserProfile,
   };
   return (
     <AuthContext.Provider value={authInformation}>
