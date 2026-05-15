@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import { FaHandHoldingUsd, FaTimes, FaBars, FaHome, FaUserCog, FaFileInvoiceDollar} from "react-icons/fa";
+import { SlEnvolopeLetter } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../hooks/useAuth";
+import { FaAddressCard } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +27,7 @@ const DashboardLayout = () => {
         <aside
           className={`
                         fixed top-0 left-0 z-50
-                        h-screen w-60 bg-base-200 shadow-lg
+                        h-screen w-64 bg-base-200 shadow-lg
                         transform transition-transform duration-300 ease-in-out
 
                         ${isOpen ? "translate-x-0" : "-translate-x-full"}
@@ -89,6 +91,26 @@ const DashboardLayout = () => {
               >
                 <FaFileInvoiceDollar size={18} />
                <span className="dark:text-white">All Loans</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/loan-applications"
+                onClick={closeDrawer}
+                className="flex items-center gap-3 rounded-lg"
+              >
+                <SlEnvolopeLetter size={18} />
+               <span className="dark:text-white">Loan Applications</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/add-loan"
+                onClick={closeDrawer}
+                className="flex items-center gap-3 rounded-lg"
+              >
+                <FaAddressCard size={18} />
+               <span className="dark:text-white">Add Loan</span>
               </NavLink>
             </li>
           </ul>

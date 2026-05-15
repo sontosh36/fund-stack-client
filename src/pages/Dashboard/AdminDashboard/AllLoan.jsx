@@ -23,7 +23,6 @@ const AllLoan = () => {
     setOpenLoanModal(true);
   };
   const handleLoanUpdate = (data) => {
-    console.log(data);
     axiosSecure.patch(`/allLoan/${loanId}`, data).then(() => {
       refetch();
       toast.success("Successful Updated!");
@@ -73,7 +72,7 @@ const AllLoan = () => {
               <th>Title</th>
               <th>Interest</th>
               <th>Category</th>
-              <th>Created By</th>
+              <th>Created Date</th>
               <th>Show on Home</th>
               <th>Actions</th>
             </tr>
@@ -101,7 +100,7 @@ const AllLoan = () => {
                   <span className="text-sm">{item.category}</span>
                 </td>
                 <td>
-                  <span className="text-sm">{item.createdBy}</span>
+                  <span className="text-sm">{new Date(item.createdAt).toLocaleString()}</span>
                 </td>
                 <td>
                   <input
