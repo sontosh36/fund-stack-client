@@ -15,7 +15,8 @@ const AddLoan = () => {
   } = useForm();
   const handleAddLoan = (data) => {
     data.email = users?.email;
-    axiosSecure.post("/add-loan", data).then((res) => {
+    axiosSecure.post("/add-loan", data)
+    .then((res) => {
       if (res.data?.insertedId) {
         Swal.fire({
           position: "top-end",

@@ -32,7 +32,6 @@ const MyLoans = () => {
   };
 
   const handleLoanCancelation = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -43,7 +42,8 @@ const MyLoans = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        axiosSecure.delete(`/loanApplication/${id}`).then(() => {
+        axiosSecure.delete(`/loanApplication/${id}`)
+        .then(() => {
           refetch();
           Swal.fire({
             title: "Deleted!",
@@ -157,51 +157,53 @@ const MyLoans = () => {
       {/* Mobile Card View */}
       <div className="grid grid-cols-1 gap-4 lg:hidden">
         {loans.map((loan) => (
-          <div key={loan._id} className="bg-base-200 shadow-md rounded-xl p-4">
+          <div key={loan._id} className="bg-base-200 shadow-md rounded-xl p-2">
             <div className="flex justify-between items-center mb-3">
-              <h2 className="font-bold text-lg">{loan.loanTitle}</h2>
+              <h2 className="font-medium text-sm">{loan.loanTitle}</h2>
 
-              <span className="text-md text-gray-700 dark:text-white font-semibold">
+              <span className="text-sm text-gray-700 dark:text-white">
                 ${loan.loanAmount}
               </span>
             </div>
 
             <div className="space-y-2 text-sm">
               <p>
-                <span className="">Loan ID: {loan._id}</span>
+                <span>Loan ID: {loan._id}</span>
               </p>
 
               <div className="flex justify-between">
                 <p>
-                  <span className="font-semibold">Application Fee:</span>{" "}
+                  <span className="font-semibold text-sm">
+                    Application Fee:
+                  </span>{" "}
                   {loan.applicationFeeStatus === "paid" ? (
                     <button
                       onClick={() => openPaymentModal(loan._id)}
-                      className="btn btn-md bg-green-500 text-black px-2 py-1 rounded-full text-xs"
+                      className="btn btn-sm bg-green-500 text-black px-1 py-1 rounded-full text-xs"
                     >
                       Paid
                     </button>
                   ) : (
-                    <span className="bg-amber-500 text-white px-2 py-1 rounded-full text-xs">
+                    <span className="bg-amber-500 text-white px-1 py-1 rounded-full text-xs">
                       Unpaid
                     </span>
                   )}
                 </p>
 
                 <p>
-                  <span className="font-semibold">Status:</span>{" "}
+                  <span className="text-xs">Status:</span>{" "}
                   {loan.status === "approved" && (
-                    <span className="bg-green-500 text-black px-2 py-1 rounded-full text-xs">
+                    <span className="bg-green-500 text-black px-1 py-1 rounded-full text-xs">
                       Approved
                     </span>
                   )}
                   {loan.status === "pending" && (
-                    <span className="bg-yellow-500 text-black px-2 py-1 rounded-full text-xs">
+                    <span className="bg-yellow-500 text-black px-1 py-1 rounded-full text-xs">
                       Pending
                     </span>
                   )}
                   {loan.status === "rejected" && (
-                    <span className="bg-red-400 text-black px-2 py-1 rounded-full text-xs">
+                    <span className="bg-red-400 text-black px-1 py-1 rounded-full text-xs">
                       Rejected
                     </span>
                   )}
@@ -209,11 +211,11 @@ const MyLoans = () => {
               </div>
             </div>
 
-            <div className="flex justify-between flex-wrap gap-2 mt-4">
+            <div className="flex justify-between flex-wrap gap-2 mt-2">
               {loan.applicationFeeStatus === "unpaid" && (
                 <button
                   onClick={() => handlePayment(loan)}
-                  className="btn btn-md btn-primary"
+                  className="btn btn-sm btn-primary"
                 >
                   Pay
                 </button>
@@ -222,15 +224,7 @@ const MyLoans = () => {
               {loan.status === "pending" && (
                 <button
                   onClick={() => handleLoanCancelation(loan._id)}
-                  className="btn btn-md bg-pink-500"
-                >
-                  Cancel
-                </button>
-              )}
-              {loan.status === "rejected" && (
-                <button
-                  onClick={() => handleLoanCancelation(loan._id)}
-                  className="btn btn-md bg-pink-500"
+                  className="btn btn-sm bg-pink-500"
                 >
                   Cancel
                 </button>
@@ -238,7 +232,7 @@ const MyLoans = () => {
 
               <button
                 onClick={() => viewLoan(loan)}
-                className="btn btn-md btn-outline"
+                className="btn btn-sm btn-outline"
               >
                 View
               </button>
@@ -326,7 +320,7 @@ const MyLoans = () => {
               </div>
 
               {/* Status + Date */}
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-t border-base-300 pt-4">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-t border-base-300 pt-2">
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-semibold ${
                     selectedLoan.status === "approved"

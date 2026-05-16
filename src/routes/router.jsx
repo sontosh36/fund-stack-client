@@ -18,6 +18,9 @@ import ManageUsers from "../pages/Dashboard/AdminDashboard/ManageUsers";
 import AllLoan from "../pages/Dashboard/AdminDashboard/AllLoan";
 import LoanApplications from "../pages/Dashboard/AdminDashboard/LoanApplications";
 import AddLoan from "../pages/Dashboard/ManagerDashboard/AddLoan";
+import ManageLoans from "../pages/Dashboard/ManagerDashboard/ManageLoans";
+import PendingApplication from "../pages/Dashboard/ManagerDashboard/PendingApplication";
+import ApprovedApplication from "../pages/Dashboard/ManagerDashboard/ApprovedApplication";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +85,18 @@ export const router = createBrowserRouter([
       {
         path: 'add-loan',
         Component: AddLoan,
+      },
+      {
+        path: 'manage-loans',
+        element: <ManageLoans></ManageLoans>
+      },
+      {
+        path: 'pending-loans',
+        element: <PendingApplication></PendingApplication>
+      },
+      {
+        path: 'approved-loans',
+        element: <ApprovedApplication></ApprovedApplication>
       },
       {
         path: 'all-loan',

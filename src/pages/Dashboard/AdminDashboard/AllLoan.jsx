@@ -23,7 +23,8 @@ const AllLoan = () => {
     setOpenLoanModal(true);
   };
   const handleLoanUpdate = (data) => {
-    axiosSecure.patch(`/allLoan/${loanId}`, data).then(() => {
+    axiosSecure.patch(`/allLoan/${loanId}`, data)
+    .then(() => {
       refetch();
       toast.success("Successful Updated!");
       setOpenLoanModal(false);
@@ -50,7 +51,8 @@ const AllLoan = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        axiosSecure.delete(`/allLoans/${id}`).then(() => {
+        axiosSecure.delete(`/allLoans/${id}`)
+        .then(() => {
           refetch();
           Swal.fire({
             title: "Deleted!",
@@ -60,7 +62,6 @@ const AllLoan = () => {
         });
     });
   };
-  console.log(allLoan);
   return (
     <div className="w-full max-w-auto px-2 py-2">
       <div className="hidden lg:block overflow-x-auto rounded-xl shadow">
@@ -100,7 +101,9 @@ const AllLoan = () => {
                   <span className="text-sm">{item.category}</span>
                 </td>
                 <td>
-                  <span className="text-sm">{new Date(item.createdAt).toLocaleString()}</span>
+                  <span className="text-sm">
+                    {new Date(item.createdAt).toLocaleString()}
+                  </span>
                 </td>
                 <td>
                   <input
@@ -129,6 +132,40 @@ const AllLoan = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* mobile view screen */}
+      <div className="grid grid-cols-1 gap-4 lg:hidden">
+        {allLoan.map((item, i) => (
+          <div key={i} className="bg-base-200 shadow-md rounded-xl p-2">
+            <div className="flex justify-between items-center mb-3">
+              <h2 className="font-medium text-sm">{item.title}</h2>
+              <span className="text-sm text-gray-700 dark:text-white">
+                {item.interestRate}%
+              </span>
+            </div>
+            <div className="flex justify-between gap-3 text-sm">
+              <p className="">{item.category}</p>
+              <p className="text-xs">
+                {new Date(item.createdAt).toLocaleString()}
+              </p>
+            </div>
+
+            <div className="flex justify-between flex-wrap gap-2 mt-2">
+              <button
+                onClick={() => handleOpenModal(item._id)}
+                className="btn btn-sm btn-primary"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => handleLoanDelete(item._id)}
+                className="btn btn-sm btn-warning"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       {openLoanModal && (
@@ -183,6 +220,7 @@ const AllLoan = () => {
 
               <div className="flex items-center justify-end gap-2 mt-2 col-span-2">
                 <button
+                  type="button"
                   onClick={() => setOpenLoanModal(false)}
                   className="btn btn-md bg-amber-400 text-black px-4 py-2 rounded-md"
                 >
