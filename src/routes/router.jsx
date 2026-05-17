@@ -23,6 +23,7 @@ import PendingApplication from "../pages/Dashboard/ManagerDashboard/PendingAppli
 import ApprovedApplication from "../pages/Dashboard/ManagerDashboard/ApprovedApplication";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./ManagerRoute";
+import DashboardHome from './../pages/Dashboard/DashboardHome/DashboardHome';
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        Component: DashboardHome
+      },
       {
         path: "my-loans",
         Component: MyLoans,

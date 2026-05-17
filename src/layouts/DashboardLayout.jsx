@@ -66,6 +66,16 @@ const DashboardLayout = () => {
 
           {/* Sidebar Menu */}
           <ul className="menu p-2 space-y-2">
+            <li>
+                  <NavLink
+                    to="/dashboard"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <FaHome size={18} />
+                    <span className="dark:text-white">Dashboard</span>
+                  </NavLink>
+                </li>
             {role === "borrower" && (
               <>
                 {/* My Loans */}
