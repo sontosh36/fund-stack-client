@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import {
   FaHandHoldingUsd,
@@ -23,6 +23,11 @@ const DashboardLayout = () => {
   const closeDrawer = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.querySelector("html").setAttribute("data-theme", savedTheme);
+  }, []);
   return (
     <div className="min-h-screen bg-base-100 max-w-7xl mx-auto">
       {/* Overlay for Mobile */}
@@ -67,15 +72,15 @@ const DashboardLayout = () => {
           {/* Sidebar Menu */}
           <ul className="menu p-2 space-y-2">
             <li>
-                  <NavLink
-                    to="/dashboard"
-                    onClick={closeDrawer}
-                    className="flex items-center gap-3 rounded-lg"
-                  >
-                    <FaHome size={18} />
-                    <span className="dark:text-white">Dashboard</span>
-                  </NavLink>
-                </li>
+              <NavLink
+                to="/dashboard"
+                onClick={closeDrawer}
+                className="flex items-center gap-3 rounded-lg"
+              >
+                <FaHome size={18} />
+                <span className="dark:text-white">Dashboard</span>
+              </NavLink>
+            </li>
             {role === "borrower" && (
               <>
                 {/* My Loans */}

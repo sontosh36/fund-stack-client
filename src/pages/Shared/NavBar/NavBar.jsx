@@ -63,7 +63,7 @@ const NavBar = () => {
   };
   const logOutUser = () => {
     logOut().then(() => {
-      toast.success("logOut Successfully");
+      toast.success("Logout Successfully");
       navigate("/");
     });
   };
