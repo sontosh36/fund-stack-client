@@ -66,27 +66,31 @@ const DashboardLayout = () => {
 
           {/* Sidebar Menu */}
           <ul className="menu p-2 space-y-2">
-            {/* My Loans */}
-            <li>
-              <NavLink
-                to="/dashboard/my-loans"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <FaHandHoldingUsd size={18} />
-                <span className="dark:text-white"> My Loans</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/profile"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <CgProfile size={18} />
-                <span className="dark:text-white">My Profile</span>
-              </NavLink>
-            </li>
+            {role === "borrower" && (
+              <>
+                {/* My Loans */}
+                <li>
+                  <NavLink
+                    to="/dashboard/my-loans"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <FaHandHoldingUsd size={18} />
+                    <span className="dark:text-white"> My Loans</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/profile"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <CgProfile size={18} />
+                    <span className="dark:text-white">My Profile</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
             {role === "admin" && (
               <>
                 <li>
@@ -161,6 +165,16 @@ const DashboardLayout = () => {
                   >
                     <MdVerified size={18} />
                     <span className="dark:text-white">Approved Loans</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/profile"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <CgProfile size={18} />
+                    <span className="dark:text-white">My Profile</span>
                   </NavLink>
                 </li>
               </>

@@ -22,6 +22,7 @@ import ManageLoans from "../pages/Dashboard/ManagerDashboard/ManageLoans";
 import PendingApplication from "../pages/Dashboard/ManagerDashboard/PendingApplication";
 import ApprovedApplication from "../pages/Dashboard/ManagerDashboard/ApprovedApplication";
 import AdminRoute from "./AdminRoute";
+import ManagerRoute from "./ManagerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -46,11 +47,11 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/about',
+        path: "/about",
         Component: About,
       },
       {
-        path: '/contact',
+        path: "/contact",
         Component: Contact,
       },
       {
@@ -64,53 +65,85 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: 'dashboard',
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: 'my-loans',
+        path: "my-loans",
         Component: MyLoans,
       },
       {
-        path:'profile',
+        path: "profile",
         Component: MyProfile,
       },
       {
-        path: 'manage-users',
-        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+        path: "manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'all-loan',
-        element: <AdminRoute><AllLoan></AllLoan></AdminRoute>
+        path: "all-loan",
+        element: (
+          <AdminRoute>
+            <AllLoan></AllLoan>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'loan-applications',
-        element: <AdminRoute><LoanApplications></LoanApplications></AdminRoute>
+        path: "loan-applications",
+        element: (
+          <AdminRoute>
+            <LoanApplications></LoanApplications>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'manage-loans',
-        element: <ManageLoans></ManageLoans>
+        path: "manage-loans",
+        element: (
+          <ManagerRoute>
+            <ManageLoans></ManageLoans>
+          </ManagerRoute>
+        ),
       },
       {
-        path: 'add-loan',
-        Component: AddLoan,
+        path: "add-loan",
+        element: (
+          <ManagerRoute>
+            <AddLoan></AddLoan>
+          </ManagerRoute>
+        ),
       },
       {
-        path: 'pending-loans',
-        element: <PendingApplication></PendingApplication>
+        path: "pending-loans",
+        element: (
+          <ManagerRoute>
+            <PendingApplication></PendingApplication>
+          </ManagerRoute>
+        ),
       },
       {
-        path: 'approved-loans',
-        element: <ApprovedApplication></ApprovedApplication>
+        path: "approved-loans",
+        element: (
+          <ManagerRoute>
+            <ApprovedApplication></ApprovedApplication>
+          </ManagerRoute>
+        ),
       },
       {
-        path: 'payment-success',
+        path: "payment-success",
         Component: PaymentSuccess,
       },
       {
-        path: 'payment-cancelled',
-        Component: PaymentCancel
-      }
-    ]
-  }
+        path: "payment-cancelled",
+        Component: PaymentCancel,
+      },
+    ],
+  },
 ]);
