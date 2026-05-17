@@ -21,6 +21,7 @@ import AddLoan from "../pages/Dashboard/ManagerDashboard/AddLoan";
 import ManageLoans from "../pages/Dashboard/ManagerDashboard/ManageLoans";
 import PendingApplication from "../pages/Dashboard/ManagerDashboard/PendingApplication";
 import ApprovedApplication from "../pages/Dashboard/ManagerDashboard/ApprovedApplication";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -76,19 +77,23 @@ export const router = createBrowserRouter([
       },
       {
         path: 'manage-users',
-        Component: ManageUsers,
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+      },
+      {
+        path: 'all-loan',
+        element: <AdminRoute><AllLoan></AllLoan></AdminRoute>
       },
       {
         path: 'loan-applications',
-        Component: LoanApplications,
-      },
-      {
-        path: 'add-loan',
-        Component: AddLoan,
+        element: <AdminRoute><LoanApplications></LoanApplications></AdminRoute>
       },
       {
         path: 'manage-loans',
         element: <ManageLoans></ManageLoans>
+      },
+      {
+        path: 'add-loan',
+        Component: AddLoan,
       },
       {
         path: 'pending-loans',
@@ -97,10 +102,6 @@ export const router = createBrowserRouter([
       {
         path: 'approved-loans',
         element: <ApprovedApplication></ApprovedApplication>
-      },
-      {
-        path: 'all-loan',
-        Component: AllLoan
       },
       {
         path: 'payment-success',

@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
-import { FaHandHoldingUsd, FaTimes, FaBars, FaHome, FaUserCog, FaFileInvoiceDollar, FaBusinessTime} from "react-icons/fa";
+import {
+  FaHandHoldingUsd,
+  FaTimes,
+  FaBars,
+  FaHome,
+  FaUserCog,
+  FaFileInvoiceDollar,
+  FaBusinessTime,
+} from "react-icons/fa";
 import { MdPending, MdVerified } from "react-icons/md";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../hooks/useAuth";
 import { FaAddressCard } from "react-icons/fa6";
+import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
   const [isOpen, setIsOpen] = useState(false);
-  const {users} = useAuth();
+  const { users } = useAuth();
   const closeDrawer = () => {
     setIsOpen(false);
   };
@@ -38,7 +48,10 @@ const DashboardLayout = () => {
         >
           {/* Sidebar Header */}
           <div className="flex items-center justify-between p-2 border-b border-base-300">
-            <Link to="/" className="text-2xl font-bold text-primary dark:text-white">
+            <Link
+              to="/"
+              className="text-2xl font-bold text-primary dark:text-white"
+            >
               FundStack
             </Link>
 
@@ -61,7 +74,7 @@ const DashboardLayout = () => {
                 className="flex items-center gap-3 rounded-lg"
               >
                 <FaHandHoldingUsd size={18} />
-               <span className="dark:text-white"> My Loans</span>
+                <span className="dark:text-white"> My Loans</span>
               </NavLink>
             </li>
             <li>
@@ -71,79 +84,87 @@ const DashboardLayout = () => {
                 className="flex items-center gap-3 rounded-lg"
               >
                 <CgProfile size={18} />
-               <span className="dark:text-white">My Profile</span>
+                <span className="dark:text-white">My Profile</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/manage-users"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <FaUserCog size={18} />
-               <span className="dark:text-white">Manage Users</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/all-loan"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <FaFileInvoiceDollar size={18} />
-               <span className="dark:text-white">All Loans</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/loan-applications"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <SlEnvolopeLetter size={18} />
-               <span className="dark:text-white">Loan Applications</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/add-loan"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <FaAddressCard size={18} />
-               <span className="dark:text-white">Add Loan</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/manage-loans"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <FaBusinessTime size={18} />
-               <span className="dark:text-white">Manage Loans</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/pending-loans"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <MdPending size={18} />
-               <span className="dark:text-white">Pending Loans</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/approved-loans"
-                onClick={closeDrawer}
-                className="flex items-center gap-3 rounded-lg"
-              >
-                <MdVerified size={18} />
-               <span className="dark:text-white">Approved Loans</span>
-              </NavLink>
-            </li>
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-users"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <FaUserCog size={18} />
+                    <span className="dark:text-white">Manage Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/all-loan"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <FaFileInvoiceDollar size={18} />
+                    <span className="dark:text-white">All Loans</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/loan-applications"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <SlEnvolopeLetter size={18} />
+                    <span className="dark:text-white">Loan Applications</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {role === "manager" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/add-loan"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <FaAddressCard size={18} />
+                    <span className="dark:text-white">Add Loan</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-loans"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <FaBusinessTime size={18} />
+                    <span className="dark:text-white">Manage Loans</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/pending-loans"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <MdPending size={18} />
+                    <span className="dark:text-white">Pending Loans</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/approved-loans"
+                    onClick={closeDrawer}
+                    className="flex items-center gap-3 rounded-lg"
+                  >
+                    <MdVerified size={18} />
+                    <span className="dark:text-white">Approved Loans</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </aside>
 
@@ -170,7 +191,11 @@ const DashboardLayout = () => {
               {/* Right Side */}
               <div className="flex items-center">
                 <div className="">
-                  <img src={users?.photoURL} alt={users?.displayName} className="w-10 h-10 rounded-full" />
+                  <img
+                    src={users?.photoURL}
+                    alt={users?.displayName}
+                    className="w-10 h-10 rounded-full"
+                  />
                 </div>
               </div>
             </div>
