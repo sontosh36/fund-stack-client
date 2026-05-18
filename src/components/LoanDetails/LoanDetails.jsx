@@ -5,12 +5,14 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import useAuth from "./../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useRole from './../../hooks/useRole';
 
 const LoanDetails = () => {
   const { id } = useParams();
   const [loan, setLoan] = useState(null);
   const [open, setOpen] = useState(false);
   const { users } = useAuth();
+  const {role} = useRole();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -44,6 +46,14 @@ const LoanDetails = () => {
   } = loan;
 
   const handleLoanApply = async (data) => {
+    if (role === 'admin' || role === 'manager') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Not allowed',
+        text: 'Admin or manager cannot apply for loan'
+      })
+      return
+    }
     try {
       Swal.fire({
         title: "Submit Application?",
