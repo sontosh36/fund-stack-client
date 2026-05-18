@@ -23,8 +23,7 @@ const AllLoan = () => {
     setOpenLoanModal(true);
   };
   const handleLoanUpdate = (data) => {
-    axiosSecure.patch(`/allLoan/${loanId}`, data)
-    .then(() => {
+    axiosSecure.patch(`/allLoan/${loanId}`, data).then(() => {
       refetch();
       toast.success("Successful Updated!");
       setOpenLoanModal(false);
@@ -51,8 +50,7 @@ const AllLoan = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        axiosSecure.delete(`/allLoans/${id}`)
-        .then(() => {
+        axiosSecure.delete(`/allLoans/${id}`).then(() => {
           refetch();
           Swal.fire({
             title: "Deleted!",
@@ -187,28 +185,33 @@ const AllLoan = () => {
               className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3"
             >
               <input
+                type="text"
                 {...register("title", { required: true })}
-                className="rounded-md bg-black/20 p-2 text-white text-md outline-0 w-full col-span-2"
+                className="input rounded-md bg-black/20 p-2 text-white text-md outline-0 w-full col-span-2"
                 placeholder="Title"
               />
               <input
+                type="text"
                 {...register("category", { required: true })}
-                className="rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full"
+                className="input rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full"
                 placeholder="Category"
               />
               <input
+                type="number"
                 {...register("maxLoanLimit", { required: true })}
-                className="rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full"
+                className="input rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full"
                 placeholder="Max Loan Limit"
               />
               <input
+                type="number"
                 {...register("interestRate", { required: true })}
-                className="rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full"
+                className="input rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full"
                 placeholder="Interest Rate"
               />
               <input
+                type="text"
                 {...register("image", { required: true })}
-                className="rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full col-span-2"
+                className="input rounded-md p-2 bg-black/20 text-white text-md outline-0 w-full col-span-2"
                 placeholder="ImageURL"
               />
               <textarea

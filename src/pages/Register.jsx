@@ -27,7 +27,7 @@ const Register = () => {
           photoURL: data.photoURL,
         };
         axios.post("/users", userInfo).then((res) => {
-          if (res.data.insertedId) {
+          if (res.data?.insertedId) {
             toast.success("Registration Successfully");
           }
         });
@@ -58,7 +58,7 @@ const Register = () => {
         axios
           .post("/users", userInfo)
           .then((res) => {
-            if (res.data.insertedId) {
+            if (res.data?.insertedId) {
               toast.success("Registration successfully");
               navigate(location.state || "/");
             }

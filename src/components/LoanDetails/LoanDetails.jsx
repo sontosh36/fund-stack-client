@@ -57,7 +57,7 @@ const LoanDetails = () => {
         if (result.isConfirmed)
           // send loan application to the database
           axiosSecure.post("/loanApplication", data).then((res) => {
-            if (res.data.insertedId) {
+            if (res.data?.insertedId) {
               Swal.fire({
                 title: "Done",
                 text: "Your Application submitted.",
@@ -152,9 +152,9 @@ const LoanDetails = () => {
         </div>
       </div>
       {open && (
-        <div className="fixed flex items-center justify-center z-30 p-3 inset-0 backdrop-blur-sm">
-          <div className="w-full max-w-md max-h-[90vh] rounded-xl overflow-y-auto shadow-xl bg-gray-50">
-            <div className="p-2 text-white relative bg-gradient-to-r from-cyan-700 to-blue-500">
+        <div className="fixed flex items-center justify-center z-30 p-3 inset-0 bg-black/30 dark:bg-black/50 backdrop-blur-sm">
+          <div className="w-full max-w-md max-h-[90vh] rounded-xl overflow-y-auto shadow-xl border border-gray-200 dark:border-white/10 bg-white  dark:bg-slate-900">
+            <div className="p-2 text-white relative bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-700">
               <button
                 onClick={() => setOpen(false)}
                 className="absolute right-2 top-3 p-2 cursor-pointer"
@@ -176,27 +176,27 @@ const LoanDetails = () => {
                 <input
                   type="text"
                   {...register("fullName", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="Enter Full Name"
                 />
               </div>
               {/* borrower email */}
               <div>
                 <input
-                  type="text"
+                  type="email"
                   {...register("borrowerEmail")}
                   defaultValue={users?.email}
-                  className="input bg-gray-100 w-full"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full"
                   readOnly
                 />
               </div>
               {/* interest rate */}
               <div>
                 <input
-                  type="text"
+                  type="number"
                   {...register("interestRate")}
                   defaultValue={interestRate}
-                  className="input bg-gray-100 w-full"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full"
                   readOnly
                 />
               </div>
@@ -206,7 +206,7 @@ const LoanDetails = () => {
                   type="text"
                   {...register("loanTitle")}
                   defaultValue={title}
-                  className="input bg-gray-100 w-full"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full"
                   readOnly
                 />
               </div>
@@ -215,7 +215,7 @@ const LoanDetails = () => {
                 <input
                   type="number"
                   {...register("nidOrPassport", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="NID or Passport Number"
                 />
               </div>
@@ -224,7 +224,7 @@ const LoanDetails = () => {
                 <input
                   type="number"
                   {...register("contactNumber", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="Contact Number"
                 />
               </div>
@@ -233,7 +233,7 @@ const LoanDetails = () => {
                 <input
                   type="text"
                   {...register("incomeSource", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="Income source"
                 />
               </div>
@@ -242,7 +242,7 @@ const LoanDetails = () => {
                 <input
                   type="number"
                   {...register("monthlyIncome", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="Monthly Income"
                 />
               </div>
@@ -251,7 +251,7 @@ const LoanDetails = () => {
                 <input
                   type="number"
                   {...register("loanAmount", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="Loan Amount"
                 />
               </div>
@@ -259,8 +259,8 @@ const LoanDetails = () => {
               <div className="sm:col-span-2">
                 <textarea
                   {...register("reasonForLoan", { required: true })}
-                  rows={5}
-                  className="input bg-gray-100 w-full resize-none outline-0"
+                  rows={2}
+                  className="bg-gray-100 dark:bg-gray-700 dark:text-white w-full resize-none outline-0 border dark:border-gray-400 p-2 rounded-sm"
                   placeholder="Why do you need this loan?"
                 />
               </div>
@@ -269,7 +269,7 @@ const LoanDetails = () => {
                 <input
                   type="text"
                   {...register("address", { required: true })}
-                  className="input bg-gray-100 w-full outline-0"
+                  className="input bg-gray-100 dark:bg-gray-700 dark:text-white w-full outline-0"
                   placeholder="Your Address"
                 />
               </div>
@@ -277,8 +277,8 @@ const LoanDetails = () => {
               <div className="sm:col-span-2">
                 <textarea
                   {...register("note")}
-                  rows={5}
-                  className="input bg-gray-100 w-full resize-none outline-0"
+                  rows={2}
+                  className="bg-gray-100 dark:bg-gray-700 dark:text-white w-full resize-none outline-0 p-2 border dark:border-gray-400 rounded-sm"
                   placeholder="Optional Note"
                 />
               </div>
@@ -287,7 +287,7 @@ const LoanDetails = () => {
               <div className="sm:col-span-2 flex justify-end gap-3">
                 <button
                   type="button"
-                  className="btn"
+                  className="btn dark:bg-pink-500"
                   onClick={() => setOpen(false)}
                 >
                   Cancel
