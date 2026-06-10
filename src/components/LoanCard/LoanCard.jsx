@@ -51,18 +51,18 @@ const LoanCard = ({ loan }) => {
         <h2 className="text-xl font-semibold text-gray-800 text-center">
           {title}
         </h2>
-        <p className="text-gray-500 text-sm">{truncateText(description, 12)}</p>
+        <p className="text-gray-500 text-sm">{truncateText(description, 10)}</p>
 
         {/* Loan Info */}
         <div className="flex justify-between items-center text-sm">
           <div>
-            <p className="text-gray-400">Interest</p>
-            <p className="font-semibold text-indigo-600">{interestRate}</p>
+            <p className="text-gray-700">Interest</p>
+            <p className="text-black">{interestRate}%</p>
           </div>
 
           <div>
-            <p className="text-gray-400">Max Amount</p>
-            <p className="font-semibold text-green-600">${maxLoanLimit}</p>
+            <p className="text-gray-700">Max Amount</p>
+            <p className="text-black">${maxLoanLimit}</p>
           </div>
         </div>
 

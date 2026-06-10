@@ -6,7 +6,6 @@ import LoanCard from "./../../../components/LoanCard/LoanCard";
 const AllLoans = () => {
   const axios = useAxiosSecure();
   const [loans, setLoans] = useState([]);
-  const [totalLoan, setTotalLoan] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchText, setSearchText] =useState('');
@@ -17,11 +16,11 @@ const AllLoans = () => {
       .get(`/all-loans?limit=${limit}&skip=${currentPage * limit}&search=${searchText}`)
       .then((res) => {
         setLoans(res.data.result);
-        setTotalLoan(res.data.count);
+        // setTotalLoan(res.data.count);
         const page = Math.ceil(res.data.count / limit);
         setTotalPage(page);
       });
-  }, [currentPage, searchText]);
+  }, [currentPage, searchText, axios]);
 
   return (
     <div className="max-w-7xl mx-auto bg-gray-300 dark:bg-gray-700 py-6 md:py-9">

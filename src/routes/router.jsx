@@ -24,6 +24,7 @@ import ApprovedApplication from "../pages/Dashboard/ManagerDashboard/ApprovedApp
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./ManagerRoute";
 import DashboardHome from './../pages/Dashboard/DashboardHome/DashboardHome';
+import Blogs from "../pages/Blogs/Blogs";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         Component: Contact,
+      },
+      {
+        path: "/blogs",
+        Component: Blogs,
       },
       {
         path: "/login",

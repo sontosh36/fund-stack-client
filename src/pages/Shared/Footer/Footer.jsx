@@ -50,6 +50,14 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/blogs"
+                  className="hover:underline"
+                >
+                  Blogs
+                </Link>
+              </li>
             </ul>
           </div>
 
