@@ -98,9 +98,9 @@ const Register = () => {
 
           <div className="mt-8">
             <img
-              src="https://illustrations.popsy.co/blue/sign-up.svg"
+              src="https://i.ibb.co.com/HpnH4HV4/sign-Up.png"
               alt="Register"
-              className="w-full max-w-md"
+              className="w-full max-w-md rounded-xl"
             />
           </div>
         </div>
@@ -260,7 +260,7 @@ const Register = () => {
                 ) : (
                   <>
                     <FaUserPlus />
-                    Register
+                    Registration
                   </>
                 )}
               </button>
