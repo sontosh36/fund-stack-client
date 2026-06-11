@@ -19,6 +19,15 @@ The purpose of **Fund-Stack** is to:
   - Enable organization to manage financial activities from a centralized Dashboard
 
   ---
+  ## How to use this website
+  - user => you can register your own gmail
+  - Manger => email : titas@gmail.com  password : Titas23% (login)
+  - Admin => email : shuvojit@gmail.com  password : shuvoJit12# (login)
+
+**Live URL:** `https://fund-stack-d7266.web.app`
+**Server URL:** `https://fund-stack-server.vercel.app`
+
+ ---
   ## Key Features
   
   - Secure Authentication and Authorization
