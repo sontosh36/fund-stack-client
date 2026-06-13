@@ -80,8 +80,8 @@ const Register = () => {
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center px-4 py-10">
-        <div className="absolute top-0 left-0 h-72 w-72 bg-pink-600/10 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 h-72 w-72 bg-indigo-600/10 blur-3xl"></div>
+      <div className="absolute top-0 left-0 h-72 w-72 bg-pink-600/10 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 h-72 w-72 bg-indigo-600/10 blur-3xl"></div>
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-10 items-center">
         {/* Left Side */}
         <div className="hidden lg:block">
@@ -226,7 +226,7 @@ const Register = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-xl text-slate-500"
                 >
-                  {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                  {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                 </button>
               </div>
               {errors.password?.type === "required" && (
@@ -247,10 +247,42 @@ const Register = () => {
                   One sepcial characters.
                 </p>
               )}
+
+              {/* Terms & Conditions */}
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className="mt-1 h-4 w-4 accent-blue-600 cursor-pointer"
+                  {...register("terms", { required: true })}
+                />
+
+                <label
+                  htmlFor="terms"
+                  className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed cursor-pointer"
+                >
+                  I agree to the{" "}
+                  <Link
+                    to="/terms"
+                    className="text-blue-600 hover:underline font-medium"
+                  >
+                    Terms & Conditions
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    to="/privacy-policy"
+                    className="text-blue-600 hover:underline font-medium"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
+                </label>
+              </div>
+
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>

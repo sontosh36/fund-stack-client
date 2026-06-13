@@ -23,8 +23,10 @@ import PendingApplication from "../pages/Dashboard/ManagerDashboard/PendingAppli
 import ApprovedApplication from "../pages/Dashboard/ManagerDashboard/ApprovedApplication";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./ManagerRoute";
-import DashboardHome from './../pages/Dashboard/DashboardHome/DashboardHome';
+import DashboardHome from "./../pages/Dashboard/DashboardHome/DashboardHome";
 import Blogs from "../pages/Blogs/Blogs";
+import PrivacyPolicy from "../pages/Shared/PrivacyPolicy/PrivacyPolicy";
+import TermsCondition from "../pages/Shared/TermsCondition/TermsCondition";
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +44,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/loan/:id",
-        element: <LoanDetails></LoanDetails>
+        element: (
+          <PrivateRoute>
+            <LoanDetails></LoanDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/about",
@@ -64,6 +70,14 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      {
+        path: "/privacy-policy",
+        Component: PrivacyPolicy,
+      },
+      {
+        path: "/terms",
+        Component: TermsCondition,
+      },
     ],
   },
   {
@@ -76,7 +90,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: DashboardHome
+        Component: DashboardHome,
       },
       {
         path: "my-loans",

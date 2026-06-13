@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { CiLogin } from "react-icons/ci";
-import { FiEye, FiEyeOff, FiMail, FiLock } from "react-icons/fi";
+import { FiMail, FiLock } from "react-icons/fi";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -55,8 +56,6 @@ const Login = () => {
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4 py-10 transition-colors duration-300">
-      <div className="absolute top-0 left-0 h-72 w-72 bg-pink-600/10 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 h-72 w-72 bg-indigo-600/10 blur-3xl"></div>
       <div className="w-full max-w-md">
         {/* Card */}
         <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-xl overflow-hidden">
@@ -100,7 +99,7 @@ const Login = () => {
                   <input
                     type="email"
                     {...register("email", { required: true })}
-                    placeholder="Enter your email"
+                    placeholder="Enter email"
                     className="w-full h-12 pl-11 pr-4 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
@@ -128,7 +127,7 @@ const Login = () => {
                       required: true,
                       minLength: 6,
                     })}
-                    placeholder="Enter your password"
+                    placeholder="Enter password"
                     className="w-full h-12 pl-11 pr-12 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
 
@@ -138,9 +137,9 @@ const Login = () => {
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-blue-600"
                   >
                     {showPassword ? (
-                      <FiEyeOff size={20} />
+                      <AiOutlineEye size={20} />
                     ) : (
-                      <FiEye size={20} />
+                      <AiOutlineEyeInvisible size={20} />
                     )}
                   </button>
                 </div>
